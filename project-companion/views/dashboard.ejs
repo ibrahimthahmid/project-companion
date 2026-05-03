@@ -1,0 +1,61 @@
+<%- include('partials/header', { active: 'dashboard' }) %>
+
+<h1>Dashboard</h1>
+
+<div class="card-row">
+  <div class="card">
+    <div class="card-header" style="background-color: #e74c3c;">To Do</div>
+    <div class="card-value" style="color: #e74c3c;"><%= counts['To Do'] %></div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-color: #f39c12;">In Progress</div>
+    <div class="card-value" style="color: #f39c12;"><%= counts['In Progress'] %></div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-color: #27ae60;">Complete</div>
+    <div class="card-value" style="color: #27ae60;"><%= counts['Complete'] %></div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-color: #3498db;">Total</div>
+    <div class="card-value" style="color: #3498db;"><%= totalTasks %></div>
+  </div>
+</div>
+
+<% if (overdueRisks.length > 0) { %>
+  <h2>Risks past review date</h2>
+  <div class="alert-box">
+    <% overdueRisks.forEach(risk => { %>
+      <div class="alert-item">
+        <span class="alert-icon">!</span>
+        <span><%= risk.description %></span>
+        <span class="alert-date">Review: <%= risk.review_date %></span>
+      </div>
+    <% }); %>
+  </div>
+<% } %>
+
+<h2>Recent tasks</h2>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th scope="col">Task</th>
+      <th scope="col">Phase</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% recentTasks.forEach(task => { %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.phase %></td>
+        <td>
+          <span class="status-badge status-<%= task.status.toLowerCase().replace(/\s/g, '-') %>">
+            <%= task.status %>
+          </span>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<%- include('partials/footer') %>

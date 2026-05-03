@@ -1,0 +1,65 @@
+<%- include('../partials/header', { active: 'tasks' }) %>
+
+<div class="page-header">
+  <h1>Tasks</h1>
+  <a href="/tasks/new" class="btn btn-add">+ Add Task</a>
+</div>
+
+<% if (typeof req !== 'undefined' && req.query && req.query.msg) { %>
+  <div class="feedback-msg"><%= req.query.msg %></div>
+<% } %>
+
+<form class="filter-bar" method="get" action="/tasks">
+  <label for="phase">Phase:</label>
+  <select name="phase" id="phase" onchange="this.form.submit()">
+    <option value="All">All</option>
+    <% phases.forEach(p => { %>
+      <option value="<%= p %>" <%= currentPhase === p ? 'selected' : '' %>><%= p %></option>
+    <% }); %>
+  </select>
+  <label for="status">Status:</label>
+  <select name="status" id="status" onchange="this.form.submit()">
+    <option value="All">All</option>
+    <option value="To Do" <%= currentStatus === 'To Do' ? 'selected' : '' %>>To Do</option>
+    <option value="In Progress" <%= currentStatus === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+    <option value="Complete" <%= currentStatus === 'Complete' ? 'selected' : '' %>>Complete</option>
+  </select>
+</form>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th scope="col">Task</th>
+      <th scope="col">Phase</th>
+      <th scope="col">Status</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Planned start</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tasks.forEach(task => { %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.phase %></td>
+        <td>
+          <span class="status-badge status-<%= task.status.toLowerCase().replace(/\s/g, '-') %>">
+            <%= task.status %>
+          </span>
+        </td>
+        <td><%= task.priority %></td>
+        <td><%= task.planned_start || '-' %></td>
+        <td class="actions">
+          <a href="/tasks/<%= task.id %>/edit" class="btn btn-edit">Edit</a>
+          <form method="post" action="/tasks/<%= task.id %>/delete" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this task?')">
+            <button type="submit" class="btn btn-delete">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<p class="count-text">Showing <%= tasks.length %> task<%= tasks.length !== 1 ? 's' : '' %></p>
+
+<%- include('../partials/footer') %>

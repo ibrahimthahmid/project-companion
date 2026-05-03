@@ -1,0 +1,38 @@
+<%- include('../partials/header', { active: 'risks' }) %>
+
+<div class="page-header">
+  <h1>Risks</h1>
+  <a href="/risks/new" class="btn btn-add">+ Add Risk</a>
+</div>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Likelihood</th>
+      <th scope="col">Impact</th>
+      <th scope="col">Mitigation</th>
+      <th scope="col">Review date</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% risks.forEach(risk => { %>
+      <tr>
+        <td><%= risk.description %></td>
+        <td><%= risk.likelihood %></td>
+        <td><%= risk.impact %></td>
+        <td><%= risk.mitigation %></td>
+        <td><%= risk.review_date || '-' %></td>
+        <td>
+          <span class="status-badge status-<%= risk.status.toLowerCase() %>"><%= risk.status %></span>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<p class="count-text">Showing <%= risks.length %> risk<%= risks.length !== 1 ? 's' : '' %></p>
+<p class="note-text">Edit and delete functionality is in progress (Increment 2).</p>
+
+<%- include('../partials/footer') %>

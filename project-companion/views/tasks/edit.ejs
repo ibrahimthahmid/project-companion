@@ -1,0 +1,60 @@
+<%- include('../partials/header', { active: 'tasks' }) %>
+
+<h1>Edit task</h1>
+
+<form method="post" action="/tasks/<%= task.id %>" class="form-card">
+  <div class="form-group">
+    <label for="title">Task title <span class="required">*</span></label>
+    <input type="text" id="title" name="title" required value="<%= task.title %>">
+  </div>
+  <div class="form-group">
+    <label for="phase">Phase</label>
+    <select id="phase" name="phase">
+      <% ['Setup','Increment 1','Increment 2','Increment 3','Evaluation','Refinement'].forEach(p => { %>
+        <option value="<%= p %>" <%= task.phase === p ? 'selected' : '' %>><%= p %></option>
+      <% }); %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select id="status" name="status">
+      <% ['To Do','In Progress','Complete'].forEach(s => { %>
+        <option value="<%= s %>" <%= task.status === s ? 'selected' : '' %>><%= s %></option>
+      <% }); %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="priority">Priority</label>
+    <select id="priority" name="priority">
+      <% ['High','Medium','Low'].forEach(p => { %>
+        <option value="<%= p %>" <%= task.priority === p ? 'selected' : '' %>><%= p %></option>
+      <% }); %>
+    </select>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="planned_start">Planned start</label>
+      <input type="date" id="planned_start" name="planned_start" value="<%= task.planned_start || '' %>">
+    </div>
+    <div class="form-group">
+      <label for="planned_duration">Planned days</label>
+      <input type="number" id="planned_duration" name="planned_duration" min="1" value="<%= task.planned_duration || '' %>">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="actual_start">Actual start</label>
+      <input type="date" id="actual_start" name="actual_start" value="<%= task.actual_start || '' %>">
+    </div>
+    <div class="form-group">
+      <label for="actual_duration">Actual days</label>
+      <input type="number" id="actual_duration" name="actual_duration" min="1" value="<%= task.actual_duration || '' %>">
+    </div>
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-add">Save changes</button>
+    <a href="/tasks" class="btn btn-cancel">Cancel</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

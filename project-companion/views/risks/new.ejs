@@ -1,0 +1,42 @@
+<%- include('../partials/header', { active: 'risks' }) %>
+
+<h1>Add new risk</h1>
+
+<form method="post" action="/risks" class="form-card">
+  <div class="form-group">
+    <label for="description">Risk description <span class="required">*</span></label>
+    <input type="text" id="description" name="description" required placeholder="Describe the risk">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="likelihood">Likelihood</label>
+      <select id="likelihood" name="likelihood">
+        <option value="Low">Low</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="High">High</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="impact">Impact</label>
+      <select id="impact" name="impact">
+        <option value="Low">Low</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="High">High</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="mitigation">Mitigation</label>
+    <textarea id="mitigation" name="mitigation" rows="3" placeholder="How will this risk be managed?"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="review_date">Review date</label>
+    <input type="date" id="review_date" name="review_date">
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-add">Create risk</button>
+    <a href="/risks" class="btn btn-cancel">Cancel</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>
