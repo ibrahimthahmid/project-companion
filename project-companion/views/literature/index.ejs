@@ -1,0 +1,40 @@
+<%- include('../partials/header', { active: 'literature' }) %>
+
+<div class="page-header">
+  <h1>Literature Log</h1>
+  <a href="/literature/new" class="btn btn-add">+ Add Source</a>
+</div>
+
+<% if (msg) { %>
+  <div class="feedback-msg" role="status"><%= msg %></div>
+<% } %>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th scope="col">Author</th>
+      <th scope="col">Title</th>
+      <th scope="col">Year</th>
+      <th scope="col">Type</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items.forEach(item => { %>
+      <tr>
+        <td><%= item.author %></td>
+        <td><%= item.title %></td>
+        <td><%= item.year || '-' %></td>
+        <td><%= item.source_type %></td>
+        <td class="actions">
+          <a href="/literature/<%= item.id %>/edit" class="btn btn-edit">Edit</a>
+          <a href="/literature/<%= item.id %>/delete" class="btn btn-delete">Delete</a>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<p class="count-text">Showing <%= items.length %> source<%= items.length !== 1 ? 's' : '' %></p>
+
+<%- include('../partials/footer') %>

@@ -4,20 +4,20 @@
 
 <div class="card-row">
   <div class="card">
-    <div class="card-header" style="background-color: #e74c3c;">To Do</div>
-    <div class="card-value" style="color: #e74c3c;"><%= counts['To Do'] %></div>
+    <div class="card-header">To Do</div>
+    <div class="card-value"><%= counts['To Do'] %></div>
   </div>
   <div class="card">
-    <div class="card-header" style="background-color: #f39c12;">In Progress</div>
-    <div class="card-value" style="color: #f39c12;"><%= counts['In Progress'] %></div>
+    <div class="card-header">In Progress</div>
+    <div class="card-value"><%= counts['In Progress'] %></div>
   </div>
   <div class="card">
-    <div class="card-header" style="background-color: #27ae60;">Complete</div>
-    <div class="card-value" style="color: #27ae60;"><%= counts['Complete'] %></div>
+    <div class="card-header">Complete</div>
+    <div class="card-value"><%= counts['Complete'] %></div>
   </div>
   <div class="card">
-    <div class="card-header" style="background-color: #3498db;">Total</div>
-    <div class="card-value" style="color: #3498db;"><%= totalTasks %></div>
+    <div class="card-header">Total</div>
+    <div class="card-value"><%= totalTasks %></div>
   </div>
 </div>
 
@@ -26,9 +26,21 @@
   <div class="alert-box">
     <% overdueRisks.forEach(risk => { %>
       <div class="alert-item">
-        <span class="alert-icon">!</span>
+        <span class="alert-icon" aria-hidden="true">!</span>
         <span><%= risk.description %></span>
         <span class="alert-date">Review: <%= risk.review_date %></span>
+      </div>
+    <% }); %>
+  </div>
+<% } %>
+
+<% if (unmitigatedRisks.length > 0) { %>
+  <h2>Open risks without a mitigation action</h2>
+  <div class="info-box">
+    <% unmitigatedRisks.forEach(risk => { %>
+      <div class="info-item">
+        <span><%= risk.description %></span>
+        <a href="/risks/<%= risk.id %>/edit" class="info-link">Link a mitigation task</a>
       </div>
     <% }); %>
   </div>

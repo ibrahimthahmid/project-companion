@@ -1,0 +1,17 @@
+<%- include('../partials/header', { active: 'literature' }) %>
+
+<h1>Delete source</h1>
+
+<div class="confirm-card">
+  <p>You are about to delete the source:</p>
+  <p class="confirm-subject"><%= item.title %></p>
+  <p class="confirm-warning">This cannot be undone.</p>
+  <div class="form-actions">
+    <a href="/literature" class="btn btn-cancel" autofocus>Cancel and keep source</a>
+    <form method="post" action="/literature/<%= item.id %>/delete">
+      <button type="submit" class="btn btn-delete">Delete source</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -5,8 +5,8 @@
   <a href="/tasks/new" class="btn btn-add">+ Add Task</a>
 </div>
 
-<% if (typeof req !== 'undefined' && req.query && req.query.msg) { %>
-  <div class="feedback-msg"><%= req.query.msg %></div>
+<% if (msg) { %>
+  <div class="feedback-msg" role="status"><%= msg %></div>
 <% } %>
 
 <form class="filter-bar" method="get" action="/tasks">
@@ -51,9 +51,7 @@
         <td><%= task.planned_start || '-' %></td>
         <td class="actions">
           <a href="/tasks/<%= task.id %>/edit" class="btn btn-edit">Edit</a>
-          <form method="post" action="/tasks/<%= task.id %>/delete" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this task?')">
-            <button type="submit" class="btn btn-delete">Delete</button>
-          </form>
+          <a href="/tasks/<%= task.id %>/delete" class="btn btn-delete">Delete</a>
         </td>
       </tr>
     <% }); %>

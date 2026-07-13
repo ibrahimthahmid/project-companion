@@ -17,6 +17,14 @@ router.get('/', (req, res) => {
     SELECT * FROM Risk WHERE project_id = ? AND review_date < date('now') AND status = 'Open'
   `).all(project.id);
 
+  const unmitigatedRisks = db.prepare(`
+    SELECT * FROM Risk WHERE project_id = ? AND status = 'Open'
+    AND NOT EXISTS (
+      SELECT 1 FROM RiskTask
+      WHERE RiskTask.risk_id = Risk.id AND RiskTask.relation_type = 'Mitigation'
+    )
+  `).all(project.id);
+
   const recentTasks = db.prepare(`
     SELECT * FROM Task WHERE project_id = ? ORDER BY id DESC LIMIT 5
   `).all(project.id);
@@ -24,7 +32,7 @@ router.get('/', (req, res) => {
   const counts = { 'To Do': 0, 'In Progress': 0, 'Complete': 0 };
   taskCounts.forEach(r => { counts[r.status] = r.count; });
 
-  res.render('dashboard', { project, counts, totalTasks, overdueRisks, recentTasks });
+  res.render('dashboard', { project, counts, totalTasks, overdueRisks, unmitigatedRisks, recentTasks });
 });
 
 module.exports = router;

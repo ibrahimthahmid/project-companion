@@ -1,0 +1,17 @@
+<%- include('../partials/header', { active: 'logs' }) %>
+
+<h1>Delete log entry</h1>
+
+<div class="confirm-card">
+  <p>You are about to delete the entry for:</p>
+  <p class="confirm-subject">Week <%= entry.week_number %></p>
+  <p class="confirm-warning">This cannot be undone.</p>
+  <div class="form-actions">
+    <a href="/logs" class="btn btn-cancel" autofocus>Cancel and keep entry</a>
+    <form method="post" action="/logs/<%= entry.id %>/delete">
+      <button type="submit" class="btn btn-delete">Delete entry</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

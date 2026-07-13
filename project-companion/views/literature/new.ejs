@@ -1,0 +1,68 @@
+<%- include('../partials/header', { active: 'literature' }) %>
+
+<h1>Add new source</h1>
+
+<form method="post" action="/literature" class="form-card">
+  <div class="form-group">
+    <label for="author">Author(s)</label>
+    <input type="text" id="author" name="author" placeholder="e.g. Smith, J. and Jones, K.">
+  </div>
+  <div class="form-group">
+    <label for="title">Title <span class="required">*</span></label>
+    <input type="text" id="title" name="title" required placeholder="Title of the source">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="year">Year</label>
+      <input type="number" id="year" name="year" min="1900" max="2100">
+    </div>
+    <div class="form-group">
+      <label for="source_type">Source type</label>
+      <select id="source_type" name="source_type">
+        <option value="Journal article">Journal article</option>
+        <option value="Book">Book</option>
+        <option value="Website">Website</option>
+        <option value="Standard">Standard</option>
+        <option value="Report">Report</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="notes">Notes on how this source contributes to the project</label>
+    <textarea id="notes" name="notes" rows="3"></textarea>
+  </div>
+
+  <h2 class="form-section-title">PROMPT evaluation</h2>
+  <div class="form-group">
+    <label for="prompt_presentation">Presentation</label>
+    <textarea id="prompt_presentation" name="prompt_presentation" rows="2" placeholder="Is the information communicated clearly?"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="prompt_relevance">Relevance</label>
+    <textarea id="prompt_relevance" name="prompt_relevance" rows="2" placeholder="Does it match the needs of this project?"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="prompt_objectivity">Objectivity</label>
+    <textarea id="prompt_objectivity" name="prompt_objectivity" rows="2" placeholder="Is there bias or a vested interest?"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="prompt_method">Method</label>
+    <textarea id="prompt_method" name="prompt_method" rows="2" placeholder="How was the evidence gathered?"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="prompt_provenance">Provenance</label>
+    <textarea id="prompt_provenance" name="prompt_provenance" rows="2" placeholder="Who produced it and where was it published?"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="prompt_timeliness">Timeliness</label>
+    <textarea id="prompt_timeliness" name="prompt_timeliness" rows="2" placeholder="Is it current enough for this use?"></textarea>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-add">Add source</button>
+    <a href="/literature" class="btn btn-cancel">Cancel</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

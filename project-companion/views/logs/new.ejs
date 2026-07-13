@@ -1,0 +1,38 @@
+<%- include('../partials/header', { active: 'logs' }) %>
+
+<h1>Add log entry</h1>
+
+<form method="post" action="/logs" class="form-card">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="week_number">Week number <span class="required">*</span></label>
+      <input type="number" id="week_number" name="week_number" min="1" required value="<%= nextWeek %>">
+    </div>
+    <div class="form-group">
+      <label for="entry_date">Date</label>
+      <input type="date" id="entry_date" name="entry_date">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="what_done">What was done this week</label>
+    <textarea id="what_done" name="what_done" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="what_well">What went well, and why</label>
+    <textarea id="what_well" name="what_well" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="what_poorly">What did not go well, and why</label>
+    <textarea id="what_poorly" name="what_poorly" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="planned_next">What is planned for next week</label>
+    <textarea id="planned_next" name="planned_next" rows="3"></textarea>
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-add">Add entry</button>
+    <a href="/logs" class="btn btn-cancel">Cancel</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

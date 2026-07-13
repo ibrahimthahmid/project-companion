@@ -1,0 +1,17 @@
+<%- include('../partials/header', { active: 'tasks' }) %>
+
+<h1>Delete task</h1>
+
+<div class="confirm-card">
+  <p>You are about to delete the task:</p>
+  <p class="confirm-subject"><%= task.title %></p>
+  <p class="confirm-warning">This cannot be undone. Any links between this task and risks will also be removed.</p>
+  <div class="form-actions">
+    <a href="/tasks" class="btn btn-cancel" autofocus>Cancel and keep task</a>
+    <form method="post" action="/tasks/<%= task.id %>/delete">
+      <button type="submit" class="btn btn-delete">Delete task</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

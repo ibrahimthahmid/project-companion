@@ -1,0 +1,17 @@
+<%- include('../partials/header', { active: 'risks' }) %>
+
+<h1>Delete risk</h1>
+
+<div class="confirm-card">
+  <p>You are about to delete the risk:</p>
+  <p class="confirm-subject"><%= risk.description %></p>
+  <p class="confirm-warning">This cannot be undone. Any links between this risk and tasks will also be removed.</p>
+  <div class="form-actions">
+    <a href="/risks" class="btn btn-cancel" autofocus>Cancel and keep risk</a>
+    <form method="post" action="/risks/<%= risk.id %>/delete">
+      <button type="submit" class="btn btn-delete">Delete risk</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

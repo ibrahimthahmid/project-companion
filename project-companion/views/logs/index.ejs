@@ -1,0 +1,39 @@
+<%- include('../partials/header', { active: 'logs' }) %>
+
+<div class="page-header">
+  <h1>Weekly Log</h1>
+  <a href="/logs/new" class="btn btn-add">+ Add Entry</a>
+</div>
+
+<% if (msg) { %>
+  <div class="feedback-msg" role="status"><%= msg %></div>
+<% } %>
+
+<% if (entries.length === 0) { %>
+  <p class="note-text">No log entries yet.</p>
+<% } %>
+
+<% entries.forEach(entry => { %>
+  <div class="log-card">
+    <div class="log-card-header">
+      <h2>Week <%= entry.week_number %></h2>
+      <span class="log-date"><%= entry.entry_date || '' %></span>
+      <span class="log-actions">
+        <a href="/logs/<%= entry.id %>/edit" class="btn btn-edit">Edit</a>
+        <a href="/logs/<%= entry.id %>/delete" class="btn btn-delete">Delete</a>
+      </span>
+    </div>
+    <dl class="log-fields">
+      <dt>What was done</dt>
+      <dd><%= entry.what_done %></dd>
+      <dt>What went well</dt>
+      <dd><%= entry.what_well %></dd>
+      <dt>What went poorly</dt>
+      <dd><%= entry.what_poorly %></dd>
+      <dt>Planned next</dt>
+      <dd><%= entry.planned_next %></dd>
+    </dl>
+  </div>
+<% }); %>
+
+<%- include('../partials/footer') %>

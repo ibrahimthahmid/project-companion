@@ -12,7 +12,8 @@
     <a href="/dashboard" class="nav-item<%= typeof active !== 'undefined' && active === 'dashboard' ? ' active' : '' %>">Dashboard</a>
     <a href="/tasks" class="nav-item<%= typeof active !== 'undefined' && active === 'tasks' ? ' active' : '' %>">Tasks</a>
     <a href="/risks" class="nav-item<%= typeof active !== 'undefined' && active === 'risks' ? ' active' : '' %>">Risks</a>
-    <a href="#" class="nav-item disabled">Literature</a>
-    <a href="#" class="nav-item disabled">Weekly Log</a>
+    <a href="/literature" class="nav-item<%= typeof active !== 'undefined' && active === 'literature' ? ' active' : '' %>">Literature</a>
+    <a href="/logs" class="nav-item<%= typeof active !== 'undefined' && active === 'logs' ? ' active' : '' %>">Weekly Log</a>
+    <a href="/export" class="nav-item nav-export">Export data</a>
   </nav>
   <main class="content">
