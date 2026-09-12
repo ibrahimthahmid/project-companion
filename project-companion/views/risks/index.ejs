@@ -27,7 +27,7 @@
         <td><%= risk.description %></td>
         <td><%= risk.likelihood %></td>
         <td><%= risk.impact %></td>
-        <td><%= risk.mitigation_count %> linked task<%= risk.mitigation_count !== 1 ? 's' : '' %></td>
+        <td><% if (risk.mitigation_count === 0) { %>No mitigation linked<% } else { %><%= risk.mitigation_count %> linked task<%= risk.mitigation_count !== 1 ? 's' : '' %><% } %></td>
         <td><%= risk.review_date || '-' %></td>
         <td>
           <span class="status-badge status-<%= risk.status.toLowerCase() %>"><%= risk.status %></span>

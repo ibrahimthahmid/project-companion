@@ -53,7 +53,9 @@
   </div>
 </form>
 
-<h2>Linked tasks</h2>
+<fieldset class="linked-fieldset">
+  <legend>Linked tasks</legend>
+  <p class="hint">Use this section to connect tasks to the risk above, either as affected by it or as a mitigation action against it.</p>
 <div class="form-card">
   <% if (links.length === 0) { %>
     <p class="note-text">No tasks are linked to this risk yet.</p>
@@ -105,5 +107,6 @@
     </form>
   <% } %>
 </div>
+</fieldset>
 
 <%- include('../partials/footer') %>

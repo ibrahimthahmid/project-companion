@@ -1,0 +1,18 @@
+<%- include('partials/header', { active: 'export' }) %>
+
+<h1>Export data</h1>
+
+<div class="form-card">
+  <p>The export will contain the full current dataset:</p>
+  <ul class="export-counts">
+    <li><%= counts.tasks %> tasks</li>
+    <li><%= counts.risks %> risks</li>
+    <li><%= counts.links %> risk to task links</li>
+    <li><%= counts.literature %> literature sources</li>
+    <li><%= counts.logs %> weekly log entries</li>
+  </ul>
+  <p role="status">Everything above will be written to a single JSON file that you can keep independently of this running instance.</p>
+  <a href="/export/download" class="btn btn-add">Download export file</a>
+</div>
+
+<%- include('partials/footer') %>
